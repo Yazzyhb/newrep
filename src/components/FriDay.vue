@@ -160,7 +160,7 @@
       padding: 10px 18px;
       font-size: 18px;
       margin-bottom: 16px;
-      box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
+      box-shadow: 0px 10px 15px rgba(172, 30, 30, 0.1);
       
       &:focus {
         outline: 0;

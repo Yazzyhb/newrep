@@ -131,7 +131,7 @@
   }
   </script>
   
-  <style lang="scss">
+  <style lang="scss" scoped>
     @import url("https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css");
   
   
@@ -141,13 +141,14 @@
     margin-top: 10px;
 margin-right: 20px;
 margin-bottom: 10px;
-margin-left: 20px;    background-color: #f8f8f8; /* Set a light background color */
+margin-left: 20px;    background-color: rgb(255, 255, 255); /* Set a light background color */
     padding: 20px; /* Add some padding to the board */
     border-radius: 8px; /* Add rounded corners to the board */
-    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 10px 15px rgba(98, 41, 168, 0.1);
   }
   .title {
 	display: flex;
+  color: rgb(189, 209, 209);
 }
 
 .greeting .title input {
@@ -157,11 +158,11 @@ margin-left: 20px;    background-color: #f8f8f8; /* Set a light background color
 }
     .todo-input {
         width: calc(100% - 36px); /* Adjust the input width */
-
+      border-color: rgb(255, 255, 255);
       padding: 10px 18px;
       font-size: 18px;
       margin-bottom: 16px;
-      box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
+      box-shadow: 0px 0px 15px rgba(192, 20, 20, 0.1);
       
       &:focus {
         outline: 0;

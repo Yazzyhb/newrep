@@ -42,7 +42,7 @@ export default {
 body{
     margin-top: -60px;
     font-family: Arial, Helvetica, sans-serif;
-    background-color: white;
+    background-color: rgb(255, 255, 255);
   color: black;
    
 }
