@@ -1,7 +1,8 @@
 <template>
+  <div class="sunday"></div>
     <div class="back">
         <h2 class="title">SUNDAY</h2>
-      <input type="text" class="todo-input" placeholder="What needs to be done" v-model="newTodo" @keyup.enter="addTodo">
+      <input type="text" class="todo-input" placeholder="Add Task" v-model="newTodo" @keyup.enter="addTodo">
       <transition-group name="fade" enter-active-class="animated fadeInUp" leave-active-class="animated fadeOutDown">
       <div v-for="(todo, index) in todosFiltered" :key="todo.id" class="todo-item">
         <div class="todo-item-left">
@@ -131,38 +132,29 @@
   }
   </script>
   
-  <style lang="scss" scoped>
+  <style lang="scss" >
     @import url("https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css");
   
   
   
     .back {
+      margin: 10px 20px; /* Adjust margin for spacing */
     max-width: 400px; /* Set the maximum width for the board */
-    margin-top: 10px;
-margin-right: 20px;
-margin-bottom: 10px;
-margin-left: 20px;    background-color: rgb(255, 255, 255); /* Set a light background color */
-    padding: 20px; /* Add some padding to the board */
-    border-radius: 8px; /* Add rounded corners to the board */
+    background-color: rgb(255, 255, 255);
+    padding: 20px;
+    border-radius: 8px;
     box-shadow: 0px 10px 15px rgba(98, 41, 168, 0.1);
   }
   .title {
 	display: flex;
-  color: rgb(189, 209, 209);
+  color: rgb(94, 75, 104);
 }
 
-.greeting .title input {
-	margin-left: 0.5rem;
-	flex: 1 1 0%;
-	min-width: 0;
-}
     .todo-input {
-        width: calc(100% - 36px); /* Adjust the input width */
       border-color: rgb(255, 255, 255);
       padding: 10px 18px;
-      font-size: 18px;
+      font-size: 15px;
       margin-bottom: 16px;
-      box-shadow: 0px 0px 15px rgba(192, 20, 20, 0.1);
       
       &:focus {
         outline: 0;

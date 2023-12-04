@@ -1,4 +1,6 @@
 <template>
+    <div class="boards-cont">
+
     <div class="board-container-one">
   <homePage></homePage>
   <MonDay></MonDay>
@@ -10,6 +12,7 @@
 
   <FriDay></FriDay>
   <SaturDay></SaturDay>
+</div>
 </div>
 </template>
 
@@ -37,6 +40,8 @@ export default {
 }
 </script>
 <style>
+
+
 .board-container-one {
   display: flex; /* Use flexbox to create a flexible container */
   justify-content: space-around; /* Distribute space around the components */
@@ -47,4 +52,5 @@ export default {
   justify-content: space-around; /* Distribute space around the components */
   margin: 20px; /* Add some margin for spacing */
 }
+
 </style>
