@@ -2,12 +2,22 @@
     <div class="back">
         <h2 class="title">MONDAY</h2>
       <input type="text" class="todo-input" placeholder="Add Task" v-model="newTodo" @keyup.enter="addTodo">
+
+
+
+      <select v-model="newTodoCategory" class="category-select">
+      <option value="work">Work</option>
+      <option value="personal">Personal</option>
+      <option value="religion">Religion</option>
+    </select>
+
+
       <transition-group name="fade" enter-active-class="animated fadeInUp" leave-active-class="animated fadeOutDown">
       <div v-for="(todo, index) in todosFiltered" :key="todo.id" class="todo-item">
         <div class="todo-item-left">
           <input type="checkbox" v-model="todo.completed">
-          <div v-if="!todo.editing" @dblclick="editTodo(todo)" class="todo-item-label" :class="{ completed : todo.completed }">      <span>{{ todo.title }}</span>
-        <span class="category">{{ todo.category }}</span> </div>
+          <div v-if="!todo.editing" @dblclick="editTodo(todo)" class="todo-item-label" :class="{ completed : todo.completed }">      <span>{{ todo.title }} - {{ todo.category }}</span>
+         </div>
           <input v-else class="todo-item-edit" type="text" v-model="todo.title" @blur="doneEdit(todo)" @keyup.enter="doneEdit(todo)" @keyup.esc="cancelEdit(todo)" v-focus>
         </div>
         <div class="remove-item" @click="removeTodo(index)">
@@ -44,6 +54,7 @@
     data () {
       return {
         newTodo: '',
+        newTodoCategory: 'work', // Default category
         idForTodo: 3,
         beforeEditCache: '',
         filter: 'all',
@@ -53,7 +64,8 @@
             'title': 'Update the project',
             'completed': false,
             'editing': false,
-           
+            'category': 'work', // Initial category
+
           },
           
         ]
@@ -99,9 +111,13 @@
           title: this.newTodo,
           completed: false,
           editing: false,
+          category: this.newTodoCategory,
+
         })
   
         this.newTodo = ''
+        this.newTodoCategory = 'work'; // Reset category to 'work'
+
         this.idForTodo++
       },
       editTodo(todo) {

@@ -21,10 +21,16 @@
       <input v-bind:placeholder="item.itemName" v-show="item.inEditMode" v-model="item.itemName" />
     </td>
     <td>
-      <button type="button" class="btn btn-success" v-show="item.inEditMode" @click="editItemComplete(item)"><i class="fa fa-save"></i> Save  </button>
-      <button type="button" class="btn btn-info" v-show="!item.inEditMode" @click="editItem(item)"  ><i class="fa fa-edit"></i> Edit  </button>
-      <button type="button" class="btn btn-danger" @click="removeItem(index)"><i class="fa fa-remove"></i> Delete  </button>
-    </td>
+  <button type="button" class="btn btn-success" v-show="item.inEditMode" @click="editItemComplete(item)">
+    <i class='bx bx-check-circle'></i>  </button>
+  <button type="button" class="btn btn-info" v-show="!item.inEditMode" @click="editItem(item)">
+    <i class='bx bx-edit-alt'></i>
+  </button>
+  <button type="button" class="btn btn-danger" @click="removeItem(index)">
+    <i class='bx bxs-trash-alt'></i>
+  </button>
+</td>
+
   </tr>
 </table>
 <div class="adding">
@@ -111,12 +117,12 @@ export default {
   
   .shop{
     
-    margin: 10px 140px; /* Adjust margin for spacing */
-  max-width: 400px; /* Set the maximum width for the board */
-  background-color: rgb(255, 255, 255);
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0px 10px 15px rgba(98, 41, 168, 0.1);
+    border-radius: 8px;
+  box-shadow: 0px 10px 15px rgba(98, 41, 168, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px; /* Adjust margin for spacing */
 }
 h2, h4 {
   font-family: 'Nunito', sans-serif;
@@ -141,7 +147,10 @@ h2, h4 {
 
 button {
   margin-left: 2%;
-
-
+border-color: aliceblue;
+width: 150px;
+height: 50px;
+font-size: 16px;
 }
+
 </style>

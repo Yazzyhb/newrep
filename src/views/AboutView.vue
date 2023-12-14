@@ -1,38 +1,63 @@
 <template>
   <div id="app">
-    <div id="login">
-      <div id="description">
-        <h1>Login</h1>
-        <p>By logging in you agree to the ridiculously long terms that you didn't bother to read.</p>
-      </div>
-      <div id="form">
-        <form @submit.prevent="doLogin">
-          <label for="email">Email</label>
-          <input type="text" id="email" v-model="email" placeholder="elon@musk.io" autocomplete="off">
+    <div id="login-container">
+      <div id="login">
+        <div id="description">
+          <h1>{{ isLoginForm ? 'Login' : 'Sign Up' }}</h1>
+          <p>By {{ isLoginForm ? 'logging in' : 'signing up' }}, you agree to the ridiculously long terms that you didn't bother to read.</p>
+          <p>{{ isLoginForm ? 'Don\'t have an account?' : 'Already have an account?' }} <a href="#" @click="toggleForm">{{ isLoginForm ? 'Sign Up' : 'Login' }}</a></p>
+         
 
-          <label for="password">Password</label>&nbsp;
-          <i class="fas" :class="[passwordFieldIcon]" @click="hidePassword = !hidePassword"></i>
-          <input :type="passwordFieldType" id="password" v-model="password" placeholder="**********">
+        </div>
+        <div id="form">
+          <form @submit.prevent="isLoginForm ? doLogin() : doSignUp()">
+            <label for="email">Email</label>
+            <input type="text" id="email" v-model="email" placeholder="elon@musk.io" autocomplete="off">
 
-          <button type="submit">Log in</button>
-        </form>
+            <label for="password">Password</label>&nbsp;
+            <i class="fas" :class="[passwordFieldIcon]" @click="hidePassword = !hidePassword"></i>
+            <input :type="passwordFieldType" id="password" v-model="password" placeholder="**********">
+
+            <template v-if="!isLoginForm">
+              <label for="confirmPassword">Confirm Password</label>
+              <input type="password" id="confirmPassword" v-model="confirmPassword" placeholder="**********">
+            </template>
+
+            <button type="submit">{{ isLoginForm ? 'Log in' : 'Sign Up' }}</button>
+          </form>
+        </div>
       </div>
     </div>
+
+    <!-- Buttons for Login and Sign Up -->
+    
   </div>
 </template>
 
 <script setup>
-  import { computed, ref } from "vue";
+import { computed, ref } from "vue";
 
-  const email = ref("");
-  const hidePassword = ref(true);
-  const password = ref("");
+const email = ref("");
+const hidePassword = ref(true);
+const password = ref("");
+const confirmPassword = ref("");
+const isLoginForm = ref(true);
 
-  const passwordFieldIcon = computed(() => hidePassword.value ? "fa-eye" : "fa-eye-slash");
-  const passwordFieldType = computed(() => hidePassword.value ? "password" : "text");
+const passwordFieldIcon = computed(() => hidePassword.value ? "fa-eye" : "fa-eye-slash");
+const passwordFieldType = computed(() => hidePassword.value ? "password" : "text");
 
-  const doLogin = () => alert("Not implemented yet :O");
+const doLogin = () => alert("Login not implemented yet :O");
+const doSignUp = () => alert("Sign Up not implemented yet :O");
+
+const toggleForm = () => {
+  isLoginForm.value = !isLoginForm.value;
+  // Clear form fields when switching between login and sign up
+  email.value = '';
+  password.value = '';
+  confirmPassword.value = '';
+};
 </script>
+
 
 <style>
 * {
@@ -43,8 +68,8 @@
 html,
 body {
   height: 100%;
-  margin: 0;
-  padding: 0;
+  margin: 50px;
+  padding: 20px;
   width: 100%;
 }
 
@@ -55,7 +80,7 @@ div#app {
 
 div#app div#login {
   align-items: center;
-  background-color: #e2e2e5;
+  background-color: #ffffff;
   display: flex;
   justify-content: center;
   width: 100%;
@@ -63,9 +88,11 @@ div#app div#login {
 }
 
 div#app div#login div#description {
-  background-color: #ffffff;
-  width: 280px;
+  background-color: #8fafc5;
+  width: 480px;
   padding: 35px;
+  border-radius: 5px;
+
 }
 
 div#app div#login div#description h1,
@@ -74,8 +101,8 @@ div#app div#login div#description p {
 }
 
 div#app div#login div#description p {
-  font-size: 0.8em;
-  color: #95a5a6;
+  font-size: 0.9em;
+  color: #000000;
   margin-top: 10px;
 }
 
@@ -111,6 +138,7 @@ div#app div#login div#form ::placeholder {
   color: #ecf0f1;
   opacity: 1;
 }
+
 
 div#app div#login div#form button {
   background-color: #ffffff;
@@ -151,4 +179,6 @@ div#app div#login div#form button:hover {
     width: 100%;
   }
 }
+
+
 </style>

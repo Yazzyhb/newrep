@@ -1,22 +1,64 @@
 <template>
-    <div class="boards-cont">
 
+    <!-- <div class="boards-cont">
+     
     <div class="board-container-one">
-  <homePage></homePage>
-  <MonDay></MonDay>
+      <FriDay></FriDay>
+    </div>
+    <div class="board-container-two">
+      <SaturDay></SaturDay>
+       <homePage></homePage>
+       <MonDay></MonDay>
+    </div>
+  <div class="board-container-three">
+   
   <ThuesDay></ThuesDay>
   <WednesDay></WednesDay>
-</div>
-  <div class="board-container-three">
     <ThursDay></ThursDay>
+  </div>
+  
+</div> -->
+<header :style="{ backgroundImage: `url('${headerBackground}')` }">
+   
+      <h1>{{ slogan }}</h1>
+    </header>
+   
 
-  <FriDay></FriDay>
-  <SaturDay></SaturDay>
+<div class="boards-cont">
+    <!-- Board container for Monday to Wednesday -->
+    <div class="board-container-one">
+      <DayButton  class="DayButton" @click="selectDay('Sunday')">Sunday</DayButton>
+
+      <DayButton  class="DayButton" @click="selectDay('Monday')">Monday</DayButton>
+      <DayButton  class="DayButton" @click="selectDay('Tuesday')">Tuesday</DayButton>
+    
 </div>
-</div>
+    <!-- Board container for Thursday to Saturday -->
+    <div class="board-container-two">
+
+      <DayButton  class="DayButton" @click="selectDay('Friday')">Friday</DayButton>
+    </div>
+      <div class="board-container-three">
+    <!-- Board container for Sunday -->
+    <DayButton   class="DayButton" @click="selectDay('Wednesday')">Wednesday</DayButton>
+
+<DayButton  class="DayButton" @click="selectDay('Thursday')">Thursday</DayButton>
+<DayButton  class="DayButton" @click="selectDay('Saturday')">Saturday</DayButton>
+    </div>
+
+    <!-- Render the selected day's to-do list component -->
+    <div class="selected-day-list">
+      <component :is="selectedDayComponent"></component>
+    </div>
+  </div>
 </template>
 
 <script>
+
+
+import DayButton from '@/components/DayButton.vue';
+
+
 import homePage from '@/components/homePage.vue';
 import MonDay from '@/components/MonDay.vue';
 import ThuesDay from '@/components/ThuesDay.vue';
@@ -27,8 +69,35 @@ import ThursDay from '@/components/ThursDay.vue';
 
 export default {
   name: 'App',
+  data() {
+    return {
+      selectedDay: 'Monday',
+      slogan: 'Achieve More, Stress Less!',
+
+    };
+  },
+  computed: {
+    selectedDayComponent() {
+      // Map the selected day to the corresponding component
+      const componentsMap = {
+        Monday: 'MonDay',
+        Tuesday: 'ThuesDay',
+        Wednesday: 'WednesDay',
+        Thursday: 'ThursDay',
+        Friday: 'FriDay',
+        Saturday: 'SaturDay',
+        Sunday: 'homePage',
+      };
+      return componentsMap[this.selectedDay] || 'homePage'; // Default to 'homePage' if not found
+    },
+  },
+  methods: {
+    selectDay(day) {
+      this.selectedDay = day;
+    },
+  },
   components: {
-  
+  DayButton,
     homePage,
     MonDay,
     ThuesDay,
@@ -41,16 +110,248 @@ export default {
 </script>
 <style>
 
+header {
+  background-color: #A7C7E7;
+  color: white;
+  padding: 10px;
+  height: 50px;
+  text-align: center;
+margin-top: -90px;
+  h1 {
+    margin: 0;
+    font-size: 24px;
+  }
 
-.board-container-one {
-  display: flex; /* Use flexbox to create a flexible container */
-  justify-content: space-around; /* Distribute space around the components */
-  margin: 20px; /* Add some margin for spacing */
+  p {
+    margin: 5px 0;
+    font-size: 16px;
+  }
 }
+
+
+.board-container-one,
+.board-container-two,
 .board-container-three {
-  display: flex; /* Use flexbox to create a flexible container */
-  justify-content: space-around; /* Distribute space around the components */
-  margin: 20px; /* Add some margin for spacing */
+  display: flex;
+  justify-content: space-around;
+  margin: 20px;
 }
+
+@media screen and (max-width: 800px) {
+  .board-container-one,
+.board-container-two,
+.board-container-three {
+    flex-direction: row; /* Stack components vertically on small screens */
+    align-items: center; /* Center components in the column */
+  }
+}
+
+
+.DayButton {
+  /* background-color: #fff;
+  color: #333;
+  padding: 10px;
+  margin: 5px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+
+  &:hover {
+    background-color: #A7C7E7;
+    color: white;
+  } */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 13rem;
+  overflow: hidden;
+  height: 3rem;
+  background-size: 300% 300%;
+  backdrop-filter: blur(1rem);
+  border-radius: 5rem;
+  transition: 0.5s;
+  animation: gradient_301 5s ease infinite;
+  border: double 4px transparent;
+  background-image: linear-gradient(#ffffff, #212121),  linear-gradient(137.48deg, #ffdb3b 10%,#FE53BB 45%, #8F51EA 67%, #0044ff 87%);
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+}
+
+
+
+
+
+#container-stars {
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  transition: 0.5s;
+  backdrop-filter: blur(1rem);
+  border-radius: 5rem;
+}
+
+strong {
+  z-index: 2;
+  font-family: 'Avalors Personal Use';
+  font-size: 12px;
+  letter-spacing: 5px;
+  color: #FFFFFF;
+  text-shadow: 0 0 4px white;
+}
+
+#glow {
+  position: absolute;
+  display: flex;
+  width: 12rem;
+}
+
+.circle {
+  width: 100%;
+  height: 30px;
+  filter: blur(2rem);
+  animation: pulse_3011 4s infinite;
+  z-index: -1;
+}
+
+.circle:nth-of-type(1) {
+  background: rgba(254, 83, 186, 0.636);
+}
+
+.circle:nth-of-type(2) {
+  background: rgba(142, 81, 234, 0.704);
+}
+
+/* .DayButton:hover #container-stars {
+  z-index: 1;
+  background-color: #653d3d;
+} */
+
+.DayButton:hover {
+  transform: scale(1)
+}
+
+.DayButton:active {
+  border: double 4px #FE53BB;
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+  animation: none;
+}
+
+.DayButton:active .circle {
+  background: #FE53BB;
+}
+
+#stars {
+  position: relative;
+  background: transparent;
+  width: 200rem;
+  height: 200rem;
+}
+
+#stars::after {
+  content: "";
+  position: absolute;
+  top: -10rem;
+  left: -100rem;
+  width: 100%;
+  height: 100%;
+  animation: animStarRotate 90s linear infinite;
+}
+
+#stars::after {
+  background-image: radial-gradient(#ffffff 1px, transparent 1%);
+  background-size: 50px 50px;
+}
+
+#stars::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 170%;
+  height: 500%;
+  animation: animStar 60s linear infinite;
+}
+
+#stars::before {
+  background-image: radial-gradient(#ffffff 1px, transparent 1%);
+  background-size: 50px 50px;
+  opacity: 0.5;
+}
+
+@keyframes animStar {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(-135rem);
+  }
+}
+
+@keyframes animStarRotate {
+  from {
+    transform: rotate(360deg);
+  }
+
+  to {
+    transform: rotate(0);
+  }
+}
+
+@keyframes gradient_301 {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes pulse_3011 {
+  0% {
+    transform: scale(0.75);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
+  }
+
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+  }
+
+  100% {
+    transform: scale(0.75);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+}
+
+
+.selected-day-list {
+  
+  padding: 20px;
+  border: 1px solid #ffffff;
+  background-color: #b1cfea;
+  display: flex;
+  justify-content: center;
+
+}
+@media screen and (max-width: 800px) {
+  .selected-day-list{
+    padding: 20px;
+  border: 1px solid #ffffff;
+  background-color: #b1cfea;
+  display: flex;
+  justify-content: center;
+
+  }
+}
+
 
 </style>
