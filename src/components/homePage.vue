@@ -1,16 +1,24 @@
 <template>
   <div class="sunday"></div>
     <div class="back">
-        <h2 class="title">SUNDAY</h2>
+        <h2 class="title">SUNDAY</h2> 
         <input type="text" class="todo-input" placeholder="Add Task" v-model="newTodo" @keyup.enter="addTodo">
 
 
 
 <select v-model="newTodoCategory" class="category-select" @change="selectCategory">
+=======
+        
+<select v-model="newTodoCategory" class="category-select">
+>>>>>>> 2544258 (new-vvr)
 <option value="work">Work</option>
 <option value="personal">Personal</option>
 <option value="religion">Religion</option>
 </select>
+        <input type="text" class="todo-input" placeholder="Add Task" v-model="newTodo" @keyup.enter="addTodo">
+
+
+
 
 <div class="extra-container-categorie">
     <div>
@@ -311,7 +319,7 @@ max-width: 600px; /* Set the maximum width for the board */
 background-color: rgb(255, 255, 255);
 padding: 20px;
 border-radius: 8px;
-box-shadow: 0px 10px 15px rgba(98, 41, 168, 0.1);
+// box-shadow: 15px 15px 20px rgba(98, 41, 168, 0.1);
 }
 
 .title {
@@ -433,10 +441,10 @@ box-shadow: 0px 10px 15px rgba(98, 41, 168, 0.1);
     .fade-enter, .fade-leave-to {
       opacity: 0;
     }
-    .category {
-    font-size: 12px;
-    margin-left: 8px;
-    color: #888;
+    .category-select {
+    font-size: 15px;
+    display: flex-end;
+    color: #000000;
     }
   </style>
   

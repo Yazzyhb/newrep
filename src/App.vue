@@ -30,13 +30,20 @@
           <span class="tooltip">Pomodoro</span>
         </li>
         <li>
+        <router-link to="/prinT">
+          <i class='bx bx-printer'></i>
+            <span class="title">Printables</span>
+          </router-link>
+          <span class="tooltip">Printables</span>
+        </li>
+        <li>
           <router-link to="/about">
             <i class='bx bx-log-in'></i>
             <span class="title">Log In</span>
           </router-link>
           <span class="tooltip">Log In</span>
         </li>
-       
+        
       </ul>
 
 

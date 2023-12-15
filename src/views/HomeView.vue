@@ -18,47 +18,34 @@
   </div>
   
 </div> -->
-<header :style="{ backgroundImage: `url('${headerBackground}')` }">
-   
+
+  <div>
+    <header :style="{ backgroundImage: `url('${headerBackground}')` }">
       <h1>{{ slogan }}</h1>
     </header>
-   
 
-<div class="boards-cont">
-    <!-- Board container for Monday to Wednesday -->
-    <div class="board-container-one">
-      <DayButton  class="DayButton" @click="selectDay('Sunday')">Sunday</DayButton>
+    <div class="boards-cont">
+      <!-- Board container for buttons -->
+      <div class="board-container-one">
+        <DayButton class="DayButton" @click="selectDay('Sunday')">Sunday</DayButton>
+        <DayButton class="DayButton" @click="selectDay('Monday')">Monday</DayButton>
+        <DayButton class="DayButton" @click="selectDay('Tuesday')">Tuesday</DayButton>
+        <DayButton class="DayButton" @click="selectDay('Wednesday')">Wednesday</DayButton>
+        <DayButton class="DayButton" @click="selectDay('Thursday')">Thursday</DayButton>
+        <DayButton class="DayButton" @click="selectDay('Friday')">Friday</DayButton>
+        <DayButton class="DayButton" @click="selectDay('Saturday')">Saturday</DayButton>
+      </div>
 
-      <DayButton  class="DayButton" @click="selectDay('Monday')">Monday</DayButton>
-      <DayButton  class="DayButton" @click="selectDay('Tuesday')">Tuesday</DayButton>
-    
-</div>
-    <!-- Board container for Thursday to Saturday -->
-    <div class="board-container-two">
-
-      <DayButton  class="DayButton" @click="selectDay('Friday')">Friday</DayButton>
-    </div>
-      <div class="board-container-three">
-    <!-- Board container for Sunday -->
-    <DayButton   class="DayButton" @click="selectDay('Wednesday')">Wednesday</DayButton>
-
-<DayButton  class="DayButton" @click="selectDay('Thursday')">Thursday</DayButton>
-<DayButton  class="DayButton" @click="selectDay('Saturday')">Saturday</DayButton>
-    </div>
-
-    <!-- Render the selected day's to-do list component -->
-    <div class="selected-day-list">
-      <component :is="selectedDayComponent"></component>
+      <!-- Render the selected day's to-do list component -->
+      <div class="selected-day-list">
+        <component :is="selectedDayComponent"></component>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-
-
 import DayButton from '@/components/DayButton.vue';
-
-
 import homePage from '@/components/homePage.vue';
 import MonDay from '@/components/MonDay.vue';
 import ThuesDay from '@/components/ThuesDay.vue';
@@ -73,12 +60,10 @@ export default {
     return {
       selectedDay: 'Monday',
       slogan: 'Achieve More, Stress Less!',
-
     };
   },
   computed: {
     selectedDayComponent() {
-      // Map the selected day to the corresponding component
       const componentsMap = {
         Monday: 'MonDay',
         Tuesday: 'ThuesDay',
@@ -88,7 +73,7 @@ export default {
         Saturday: 'SaturDay',
         Sunday: 'homePage',
       };
-      return componentsMap[this.selectedDay] || 'homePage'; // Default to 'homePage' if not found
+      return componentsMap[this.selectedDay] || 'homePage';
     },
   },
   methods: {
@@ -97,7 +82,7 @@ export default {
     },
   },
   components: {
-  DayButton,
+    DayButton,
     homePage,
     MonDay,
     ThuesDay,
@@ -105,8 +90,8 @@ export default {
     ThursDay,
     FriDay,
     SaturDay,
-},
-}
+  },
+};
 </script>
 <style>
 
@@ -129,21 +114,16 @@ margin-top: -90px;
 }
 
 
-.board-container-one,
-.board-container-two,
-.board-container-three {
+.boards-cont {
   display: flex;
   justify-content: space-around;
   margin: 20px;
 }
 
-@media screen and (max-width: 800px) {
-  .board-container-one,
-.board-container-two,
-.board-container-three {
-    flex-direction: row; /* Stack components vertically on small screens */
-    align-items: center; /* Center components in the column */
-  }
+.board-container-one {
+  display: flex;
+  flex-direction: column; /* Stack buttons vertically */
+  margin: 20px;
 }
 
 
@@ -332,25 +312,32 @@ strong {
   }
 }
 
-
 .selected-day-list {
-  
   padding: 20px;
   border: 1px solid #ffffff;
   background-color: #b1cfea;
   display: flex;
   justify-content: center;
-
 }
+
+
 @media screen and (max-width: 800px) {
-  .selected-day-list{
-    padding: 20px;
+  .boards-cont {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .board-container-one {
+    margin-bottom: 20px;
+  }
+}
+
+.selected-day-list {
+  padding: 20px;
   border: 1px solid #ffffff;
-  background-color: #b1cfea;
+  background-color: #ffffff;
   display: flex;
   justify-content: center;
-
-  }
 }
 
 

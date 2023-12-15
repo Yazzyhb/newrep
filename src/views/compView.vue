@@ -214,7 +214,7 @@ $val-width: 50px;
 
 
 .pomodoro{
-  background-color: rgb(143, 189, 244);
+  background-color: rgb(152, 181, 216);
   margin-top:-100px;
   border-radius: 60px;
   margin-left: 100px;
