@@ -19,10 +19,14 @@
   
 </div> -->
 
-  <div>
-    <header :style="{ backgroundImage: `url('${headerBackground}')` }">
-      <h1>{{ slogan }}</h1>
-    </header>
+  <div id="app" class="center-container">
+        <!-- Quotes Slider -->
+        <div class="quotes-slider">
+      <div v-for="(quote, index) in quotes" :key="index" class="quote" :class="{ active: index === currentQuoteIndex }">
+        {{ quote }}
+      </div>
+    </div>
+
 
     <div class="boards-cont">
       <!-- Board container for buttons -->
@@ -59,7 +63,19 @@ export default {
   data() {
     return {
       selectedDay: 'Monday',
-      slogan: 'Achieve More, Stress Less!',
+      quotes: [
+        'Quote 1',
+        'Quote 2',
+        'Quote 3',
+        'Quote 4',
+        'Quote 5',
+        'Quote 6',
+        'Quote 7',
+        'Quote 8',
+        'Quote 9',
+        'Quote 10',
+      ],
+      currentQuoteIndex: 0,
     };
   },
   computed: {
@@ -80,6 +96,14 @@ export default {
     selectDay(day) {
       this.selectedDay = day;
     },
+    startQuoteSlider() {
+      setInterval(() => {
+        this.currentQuoteIndex = (this.currentQuoteIndex + 1) % this.quotes.length;
+      }, 5000);
+    },
+  },
+  mounted() {
+    this.startQuoteSlider();
   },
   components: {
     DayButton,
@@ -93,37 +117,24 @@ export default {
   },
 };
 </script>
-<style>
+<style >
 
-header {
-  background-color: #A7C7E7;
-  color: white;
-  padding: 10px;
-  height: 50px;
-  text-align: center;
-margin-top: -90px;
-  h1 {
-    margin: 0;
-    font-size: 24px;
-  }
-
-  p {
-    margin: 5px 0;
-    font-size: 16px;
-  }
-}
 
 
 .boards-cont {
   display: flex;
   justify-content: space-around;
   margin: 20px;
+
+
 }
 
 .board-container-one {
   display: flex;
   flex-direction: column; /* Stack buttons vertically */
   margin: 20px;
+
+
 }
 
 
@@ -146,6 +157,8 @@ margin-top: -90px;
   width: 13rem;
   overflow: hidden;
   height: 3rem;
+  margin: 0.5rem; /* Add space between buttons */
+
   background-size: 300% 300%;
   backdrop-filter: blur(1rem);
   border-radius: 5rem;
@@ -313,13 +326,17 @@ strong {
 }
 
 .selected-day-list {
-  padding: 20px;
+ padding-left: 200px;
+padding-right: 200px;
   border: 1px solid #ffffff;
-  background-color: #b1cfea;
+  background-color: #ceddec;
   display: flex;
-  justify-content: center;
-}
+  /* justify-content: flex-start; */
+  align-items: center; /* Center vertically */
+margin-top: -0px;
+  box-shadow: 25px 25px 15px rgba(98, 41, 168, 0.1);
 
+}
 
 @media screen and (max-width: 800px) {
   .boards-cont {
@@ -332,13 +349,51 @@ strong {
   }
 }
 
-.selected-day-list {
-  padding: 20px;
-  border: 1px solid #ffffff;
-  background-color: #ffffff;
-  display: flex;
-  justify-content: center;
+
+
+.center-container{
+height: 80vh;
+}
+@media screen and (max-width: 600px) {
+  .boards-cont {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .board-container-one {
+    margin-bottom: 20px;
+  }
+
+  .DayButton {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .selected-day-list {
+    padding: 10px;
+    border: 1px solid #b1cfea;
+    background-color: #b1cfea;
+  }
+
+  .center-container {
+    height: auto; /* Remove fixed height */
+  }
+
 }
 
+.quote-slider {
+  
+  position: relative;
+  overflow: hidden;
+  height: 100px; /* Adjust the height according to your design */
+  margin-bottom: 40px;
+}
 
+.quote {
+  display: none;
+}
+
+.quote.active {
+  display: block;
+}
 </style>

@@ -1,5 +1,8 @@
 <template>
  <div id="app">
+  <header :style="{ backgroundImage: `url('${headerBackground}')` }">
+      <h1>{{ slogan }}</h1>
+    </header>
     <section class="sidebar" >
      
   <ul class="nav-links">
@@ -68,6 +71,8 @@ export default {
             sidebarExpanded: false,
             isDarkMode: false,
             isSearchOpen: false,
+            slogan: 'Achieve More, Stress Less!',
+
         };
     },
     created() {
@@ -106,7 +111,7 @@ export default {
   padding: 0;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
-  --color-hover: rgba(32, 59, 232);
+  --color-hover: rgb(76, 79, 96);
   --transition: all 0.2s ease;
 }
 
@@ -114,6 +119,25 @@ export default {
   --color-white: #fff;
   --color-black: #000;
   --color-bg: #e2e2e2;
+}
+header {
+  background-color: #A7C7E7;
+  
+ 
+  color: white;
+  padding: 10px;
+  height: 50px;
+  text-align: center;
+margin-top: -60px;
+  h1 {
+    margin: 0;
+    font-size: 24px;
+  }
+
+  p {
+    margin: 5px 0;
+    font-size: 16px;
+  }
 }
 
 .dark-mode {
@@ -125,7 +149,8 @@ export default {
 .sidebar {
   flex: 0 0 auto;
   position: fixed;
-  top: 0;
+  top: 30;
+
   left: 0;
   z-index: 100;
   width: 70px;
@@ -296,5 +321,8 @@ export default {
 }
 
 
-
+body {
+  margin: 0;
+  padding: 0;
+}
 </style>

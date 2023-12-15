@@ -1,47 +1,35 @@
-
-
 <template>
-  <footer>
-    <div class="footer-content">
+    <footer>
+      <div class="footer-content">
+        <!-- Add your footer content here -->
+        <p>&copy; My Week 2023</p>
       </div>
-  </footer>
-</template>
-
-<script>
-export default {
-  data() {
-    return {
-      message: 'Welcome to our website!',
-    };
-  },
-  methods: {
-    changeMessage() {
-      this.message = 'Thank you for visiting!';
-    },
-  },
-  created() {
-    console.log('Footer component created');
-  },
-};
-</script>
-
-<style scoped>
-footer {
-  height: 0px;
+    </footer>
+  </template>
+  
+  <script>
+  export default {
+    
+  };
+  </script>
+  
+  <style scoped>
+ footer {
+  background-color: #333;
+  color: #fff;
+  padding: 20px 0;
   text-align: center;
-  bottom: 0;
-  background-color: #343232;
-  color: white;
-  display: flex;
-}
+  
 
+}
+@media screen and (max-width: 600px) {
+.footer{
+    display: none;
+}}
 .footer-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  position: fixed;
+  max-width: 1200px;
+  margin: 0 auto;
 }
-
-
-</style> 
+  
+  </style> 
+  

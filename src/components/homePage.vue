@@ -2,15 +2,10 @@
   <div class="sunday"></div>
     <div class="back">
         <h2 class="title">SUNDAY</h2> 
-        <input type="text" class="todo-input" placeholder="Add Task" v-model="newTodo" @keyup.enter="addTodo">
-
-
-
-<select v-model="newTodoCategory" class="category-select" @change="selectCategory">
-=======
         
-<select v-model="newTodoCategory" class="category-select">
->>>>>>> 2544258 (new-vvr)
+        <select v-model="newTodoCategory" class="category-select" @change="selectCategory">
+          <option value="" disabled selected>Select a category</option>
+
 <option value="work">Work</option>
 <option value="personal">Personal</option>
 <option value="religion">Religion</option>
@@ -19,10 +14,16 @@
 
 
 
+<!-- <select v-model="newTodoCategory" class="category-select" @change="selectCategory"> -->
+
+
+
+
+
 
 <div class="extra-container-categorie">
     <div>
-      <button :class="{ active: filter == 'work' }" @click="filter = 'work'">Work</button>
+      <button  :class="{ active: filter == 'work' }" @click="filter = 'work'">Work</button>
       <button :class="{ active: filter == 'personal' }" @click="filter = 'personal'">Personal</button>
       <button :class="{ active: filter == 'religion' }" @click="filter = 'religion'">Religion</button>
     </div></div>
@@ -56,7 +57,7 @@
 
   <div>
     <transition name="fade">
-    <button v-if="showClearCompletedButton" @click="clearCompleted">Clear Completed</button>
+    <button class="btnn" v-if="showClearCompletedButton" @click="clearCompleted">Clear</button>
     </transition>
   </div>
 
@@ -312,14 +313,16 @@ const checkTodo = async (todo) => {
 
 .back {
   
-width: 80%;
-margin-left: 80px;
-
+width: 150%;
+margin-left: 0px;
+padding-left: 100px;
+padding-right: 100px;
+margin-right:3px ;
 max-width: 600px; /* Set the maximum width for the board */
 background-color: rgb(255, 255, 255);
-padding: 20px;
-border-radius: 8px;
-// box-shadow: 15px 15px 20px rgba(98, 41, 168, 0.1);
+// padding: 10px;
+border-radius: 10px;
+//  box-shadow: 15px 15px 20px rgba(98, 41, 168, 0.1);
 }
 
 .title {
@@ -413,12 +416,22 @@ border-radius: 8px;
       padding-top: 14px;
       margin-bottom: 14px;
     }
-  
+// .btnn{
+//     display: flex;
+//       width: 85px;
+//  height: 60px;
+//  margin: 0.9rem; /* Add space between buttons */
+//   }
     button {
+      display: inline-block;
+      width: 85px;
+ height: 30px;
+ margin: 0.9rem; /* Add space between buttons */
+
       font-size: 14px;
       background-color: white;
       appearance: none;
-  
+  border-radius: 20px;
       &:hover {
         background: rgb(165, 129, 170);
       }

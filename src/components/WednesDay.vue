@@ -1,15 +1,16 @@
 <template>
     <div class="back">
         <h2 class="title">WEDNESDAY</h2>
-        <input type="text" class="todo-input" placeholder="Add Task" v-model="newTodo" @keyup.enter="addTodo">
+        <select v-model="newTodoCategory" class="category-select" @change="selectCategory">
+          <option value="" disabled selected>Select a category</option>
 
-
-
-<select v-model="newTodoCategory" class="category-select" @change="selectCategory">
 <option value="work">Work</option>
 <option value="personal">Personal</option>
 <option value="religion">Religion</option>
 </select>
+        <input type="text" class="todo-input" placeholder="Add Task" v-model="newTodo" @keyup.enter="addTodo">
+
+
 
 <div class="extra-container-categorie">
     <div>
@@ -46,7 +47,7 @@
 
   <div>
     <transition name="fade">
-    <button v-if="showClearCompletedButton" @click="clearCompleted">Clear Completed</button>
+    <button v-if="showClearCompletedButton" @click="clearCompleted">Clear </button>
     </transition>
   </div>
 

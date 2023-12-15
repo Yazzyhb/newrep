@@ -1,5 +1,5 @@
 <template>
- 
+ <div id="app" class="center-container">
     <div class="login-container">
       <div class="login">
         <div class="description">
@@ -29,7 +29,7 @@
       </div>
     </div>
 
-    
+  </div>
 </template>
 
  <script setup>
@@ -67,27 +67,33 @@ const toggleForm = () => {
 </script>
 
 
-<style scss>
+<style scss scoped>
 
-
+.center-container{
+height: 100vh;
+}
 .login-container {
-  height: 100%;
+  height: 30%;
   margin: 0;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .login {
-  align-items: center;
-  background-color:#8fafc5;
-  display: flex;
+  margin-top: 300px;
+  background-color:#A7C7E7;
+  height: 60vh;
+ width: 60%;
+ display: flex;
   justify-content: center;
-  width: 100%;
+  align-items: center;
+  border-radius: 10px;
+  box-shadow: 30px 30px 20px rgba(98, 41, 168, 0.1);
 
 }
 
 .login .description {
-  background-color: #8fafc5;
+  background-color: #A7C7E7;
   width: 480px;
   padding: 100px;
   border-radius: 10px;
@@ -107,11 +113,12 @@ const toggleForm = () => {
 }
 
 .login .form {
+  margin-right: 20px;
  background-color: #34495e;
   border-radius: 8px;
   box-shadow: 0px 0px 30px 0px #6476af;
   color: #ecf0f1;
-  width: 400px;
+  width: 500px;
   padding: 25px;
 height: 300px;
   text-align: center; 

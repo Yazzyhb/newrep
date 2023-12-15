@@ -1,15 +1,17 @@
 <template>
     <div class="back">
         <h2 class="title">FRIDAY</h2>
-        <input type="text" class="todo-input" placeholder="Add Task" v-model="newTodo" @keyup.enter="addTodo">
+        <select v-model="newTodoCategory" class="category-select" @change="selectCategory">
+          <option value="" disabled selected>Select a category</option>
 
-
-
-<select v-model="newTodoCategory" class="category-select" @change="selectCategory">
 <option value="work">Work</option>
 <option value="personal">Personal</option>
 <option value="religion">Religion</option>
 </select>
+        <input type="text" class="todo-input" placeholder="Add Task" v-model="newTodo" @keyup.enter="addTodo">
+
+
+
 
 <div class="extra-container-categorie">
     <div>
@@ -47,7 +49,7 @@
 
   <div>
     <transition name="fade">
-    <button v-if="showClearCompletedButton" @click="clearCompleted">Clear Completed</button>
+    <button v-if="showClearCompletedButton" @click="clearCompleted">Clear </button>
     </transition>
   </div>
 
@@ -295,146 +297,3 @@ const checkTodo = async (todo) => {
 }
   }
 </script>
-
-
-<style lang="scss" scoped>
-@import url("https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css");
-
-
-.back {
-  
-width: 80%;
-margin-left: 80px;
-
-max-width: 600px; /* Set the maximum width for the board */
-background-color: rgb(255, 255, 255);
-padding: 20px;
-border-radius: 8px;
-box-shadow: 0px 10px 15px rgba(98, 41, 168, 0.1);
-}
-
-.title {
-	display: flex;
-  color: rgb(94, 75, 104);
-}
-
-    .todo-input {
-      border-color: rgb(255, 255, 255);
-      padding: 10px 18px;
-      font-size: 15px;
-      margin-bottom: 16px;
-      width: 100%;
-      &:focus {
-        outline: 0;
-      };
-      & + div {
-      margin-top: 8px;
-    }
-
-    label {
-      display: flex;
-      align-items: center;
-
-      select {
-        margin-left: 8px;
-        padding: 6px;
-        font-size: 14px;
-        border: 1px solid #cf2626;
-        border-radius: 4px;
-        &:focus {
-          outline: none;
-              }}
-    }
-  }
-    .todo-item {
-      margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      animation-duration: 0.3s;
-      
-    
-    }
-  
-    .remove-item {
-      cursor: pointer;
-      margin-left: 14px;
-      &:hover {
-        color: black;
-      }
-    }
-  
-    .todo-item-left { // later
-      display: flex;
-      align-items: center;
-    }
-  
-    .todo-item-label {
-      padding: 10px;
-     
-      margin-left: 12px;
-    }
-  
-    .todo-item-edit {
-      font-size: 24px;
-      color: #2c3e50;
-      margin-left: 12px;
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #ccc; //override defaults
-      font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  
-      &:focus {
-        outline: none;
-      }
-    }
-  
-    .completed {
-      text-decoration: line-through;
-      color: rgb(79, 76, 76);
-    
-    }
-  
-    .extra-container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-size: 16px;
-      border-top: 1px solid lightgrey;
-      padding-top: 14px;
-      margin-bottom: 14px;
-    }
-  
-    button {
-      font-size: 14px;
-      background-color: white;
-      appearance: none;
-  
-      &:hover {
-        background: rgb(165, 129, 170);
-      }
-  
-      &:focus {
-        outline: none;
-      }
-    }
-  
-    .active {
-      
-      background: rgb(196, 182, 198);
-    }
-  
-    // CSS Transitions
-    .fade-enter-active, .fade-leave-active {
-      transition: opacity .2s;
-    }
-  
-    .fade-enter, .fade-leave-to {
-      opacity: 0;
-    }
-    .category {
-    font-size: 12px;
-    margin-left: 8px;
-    color: #888;
-    }
-  </style>

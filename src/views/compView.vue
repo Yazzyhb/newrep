@@ -1,6 +1,12 @@
 <template>
-  <div id='app'>
+   <div id='app' class="center-container">
+
     <div class="pomodoro">
+      <div class="Des">
+  <h2>The Pomodoro Technique</h2>
+  <p>
+The Pomodoro Technique is a time management method based on 25-minute stretches of focused work broken by five-minute breaks. Longer breaks, typically 15 to 30 minutes, are taken after four consecutive work intervals. Each work interval is called a pomodoro</p>
+</div>
 	<!----Sliders---->
 	<div class='sliders col y'>
 		<div class='row y'>
@@ -212,13 +218,23 @@ $val-width: 50px;
 	align-items: center;
 }
 
+.center-container {
+  display: flex;
+  flex-direction: column; /* Change the flex direction to column */
+
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Set the height to full viewport height for centering vertically */
+}
 
 .pomodoro{
-  background-color: rgb(152, 181, 216);
+  background-color: #ceddec;
   margin-top:-100px;
   border-radius: 60px;
   margin-left: 100px;
-  width: 100%;
+  height: 100vh;
+  box-shadow: 25px 25px 15px rgba(98, 41, 168, 0.1);
+  width: 80%;
 }
 input {
   background: none;
@@ -298,6 +314,16 @@ input {
   }
 }
 
+
+
+.Des {
+  margin-bottom: 20px; /* Adjust margin as needed */
+  background-color: #ceddec;
+  border-radius: 60px;
+  width: 100%;
+  padding: 20px; /* Adjust padding as needed */
+  box-sizing: border-box;
+}
 .timer {
 	$timer_width: 300px;
 	position: relative;

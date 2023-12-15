@@ -122,10 +122,13 @@
 .template-page {
   max-width: 800px;
   margin: 0 auto;
+  margin-top: 100px;
+  
 }
 .template-container {
   display: flex;
   flex-wrap: wrap;
+  
 }
 
 h2{
