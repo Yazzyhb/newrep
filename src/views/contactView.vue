@@ -6,9 +6,9 @@
       <table id="shopping-list-table" class="table table-condensed table-hover">
         <thead>
           <tr>
-            <th>Quantity</th>
-            <th>Item</th>
-            <th>Actions</th>
+            <th><h3>Quantity</h3></th>
+            <th><h3>Item</h3></th>
+            <th><h3>Actions</h3></th>
           </tr>
         </thead>
         <tr v-for="(item) in itemsList" :key="item.itemId">
@@ -263,15 +263,16 @@ box-shadow: inset;
     margin-left: 80px;
     margin-right: 80px;
     border-radius: 10px;
-  box-shadow: 0px 10px 15px rgba(98, 41, 168, 0.2);
+  box-shadow: 0px 10px 15px rgba(41, 46, 207, 0.2);
   display: flex;
   justify-content: center;
   align-items: center;
 
 }
-h2, h4 {
+h2, h3,h4 {
   font-family: 'Nunito', sans-serif;
  padding: 10px;
+ color:#A7C7E7
 }
 .adding{
     margin: 10px 20px; /* Adjust margin for spacing */
@@ -283,7 +284,6 @@ h2, h4 {
 }
 
 #shopping-list-table{
-  
 
   table-layout: fixed;
   width: 100%;
