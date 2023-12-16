@@ -1,5 +1,5 @@
 <template>
- <div id="app">
+ <div id="app" class="app-container">
   <header :style="{ backgroundImage: `url('${headerBackground}')` }">
       <h1>{{ slogan }}</h1>
     </header>
@@ -50,8 +50,16 @@
       </ul>
 
 
+      <div class="theme-wrapper">
+      <i class="bx bxs-moon theme-icon"></i>
+      <p>Dark Theme</p>
+      <div class="theme-btn">
+        <span class="theme-ball"></span>
+      </div>
+    </div>
+  </section>
 
-    </section>
+
 
     <div class="container main"><RouterView></RouterView></div>
     <FooteR></FooteR>
@@ -63,7 +71,7 @@
 </template>
 
 <script>
-import FooteR from './components/FooteR.vue';
+
 
 export default {
     data() {
@@ -75,23 +83,38 @@ export default {
 
         };
     },
-    created() {
-        const localData = localStorage.getItem("theme");
-        if (localData === "dark") {
-            this.isDarkMode = true;
-        }
-    },
-    methods: {
-        toggleTheme() {
-            this.isDarkMode = !this.isDarkMode;
-            localStorage.setItem("theme", this.isDarkMode ? "dark" : "light");
-        },
-    },
-    components: { FooteR },
-    computed: {
-        
-    },
-};
+    
+
+
+  mounted() {
+    const btn_theme = document.querySelector(".theme-btn");
+    const theme_ball = document.querySelector(".theme-ball");
+
+    const localData = localStorage.getItem("theme");
+
+    if (localData == null) {
+      localStorage.setItem("theme", "light");
+    }
+
+    if (localData == "dark") {
+      document.body.classList.add("dark-mode");
+      theme_ball.classList.add("dark");
+    } else if (localData == "light") {
+      document.body.classList.remove("dark-mode");
+      theme_ball.classList.remove("dark");
+    }
+
+    btn_theme.addEventListener("click", function () {
+      document.body.classList.toggle("dark-mode");
+      theme_ball.classList.toggle("dark");
+      if (document.body.classList.contains("dark-mode")) {
+        localStorage.setItem("theme", "dark");
+      } else {
+        localStorage.setItem("theme", "light");
+      }
+    });
+  }}
+
 </script>
 
 
@@ -139,17 +162,38 @@ margin-top: -60px;
     font-size: 16px;
   }
 }
-
 .dark-mode {
   --color-white: #000;
   --color-black: #fff;
-  --color-bg: #1d1b31;
+  --color-bg: #0f044e;
 }
+
+
+header {
+  background-color: #A7C7E7;
+  
+ 
+  color: white;
+  padding: 10px;
+  height: 50px;
+  text-align: center;
+margin-top: -60px;
+  h1 {
+    margin: 0;
+    font-size: 24px;
+  }
+
+  p {
+    margin: 5px 0;
+    font-size: 16px;
+  }
+}
+
 
 .sidebar {
   flex: 0 0 auto;
   position: fixed;
-  top: 30;
+  top: 0;
 
   left: 0;
   z-index: 100;
@@ -321,8 +365,87 @@ margin-top: -60px;
 }
 
 
+.theme-wrapper {
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  height: 70px;
+  width: 300px;
+  left: 0;
+  padding: 8px 16px;
+}
+
+.theme-wrapper .theme-icon {
+  font-size: 20px;
+  color: var(--color-black);
+  display: none;
+  transition: var(--transition);
+}
+.sidebar.expand .theme-wrapper .theme-icon {
+  display: block;
+}
+
+.theme-wrapper p {
+  font-size: 16px;
+  color: var(--color-black);
+  
+  font-weight: 400;
+  display: none;
+  transition: var(--transition);
+}
+
+.sidebar.expand .theme-wrapper p {
+  display: block;
+}
+
+.theme-wrapper .theme-btn {
+  width: 40px;
+  height: 20px;
+  background: var(--color-bg);
+  border-radius: 30px;
+  position: relative;
+  cursor: pointer;
+}
+
+.theme-wrapper .theme-btn .theme-ball {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background: var(--color-black);
+  border-radius: 50%;
+  top: 2px;
+  left: 3px;
+  transition: var(--transition);
+}
+
+.theme-wrapper .theme-btn .theme-ball.dark {
+  left: 20px;
+}
+
+.dark-mode .app-container {
+  background: var(--color-bg);
+  
+}
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: black; /* Set the default text color */
+  margin-top: 60px;
+}
+
+.container.main {
+  flex: 1 ;
+  padding: 20px;
+  transition: var(--transition);
+ 
+}
+
 body {
   margin: 0;
   padding: 0;
+
 }
 </style>

@@ -19,13 +19,13 @@
   
 </div> -->
 
-  <div id="app" class="center-container">
-        <!-- Quotes Slider -->
-        <div class="quotes-slider">
+<div class="quotes-slider">
       <div v-for="(quote, index) in quotes" :key="index" class="quote" :class="{ active: index === currentQuoteIndex }">
-        {{ quote }}
+       <blockquote>{{ quote }}</blockquote> 
       </div>
     </div>
+
+
 
 
     <div class="boards-cont">
@@ -45,7 +45,8 @@
         <component :is="selectedDayComponent"></component>
       </div>
     </div>
-  </div>
+
+  
 </template>
 
 <script>
@@ -64,21 +65,24 @@ export default {
     return {
       selectedDay: 'Monday',
       quotes: [
-        'Quote 1',
-        'Quote 2',
-        'Quote 3',
-        'Quote 4',
-        'Quote 5',
-        'Quote 6',
-        'Quote 7',
-        'Quote 8',
-        'Quote 9',
-        'Quote 10',
+      'Dream it. Believe it. Build it.', 
+        'Sometimes later becomes never. Do it now.',
+        'Great things never come from comfort zones.',
+        'Don’t wait for opportunity. Create it.',
+        'It’s going to be hard, but hard does not mean impossible.',
+        'Little things make big days.',
+        'Do something today that your future self will thank you for.',
+        'Don’t stop when you’re tired. Stop when you’re done.',
+        'Success doesn’t just find you. You have to go out and get it.',
+        'Dream it. Wish it. Do it',
+       
       ],
       currentQuoteIndex: 0,
     };
   },
   computed: {
+
+
     selectedDayComponent() {
       const componentsMap = {
         Monday: 'MonDay',
@@ -99,9 +103,10 @@ export default {
     startQuoteSlider() {
       setInterval(() => {
         this.currentQuoteIndex = (this.currentQuoteIndex + 1) % this.quotes.length;
-      }, 5000);
+      }, 3000);
     },
   },
+ 
   mounted() {
     this.startQuoteSlider();
   },
@@ -118,7 +123,12 @@ export default {
 };
 </script>
 <style >
-
+.everything{
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
 
 
 .boards-cont {
@@ -350,10 +360,60 @@ margin-top: -0px;
 }
 
 
-
+.selected-day-list{
+  padding: 10px;
+  border: 1px solid #b1cfea;
+  background-color:#b1cfea ;
 .center-container{
-height: 80vh;
+height: auto;
 }
+}
+
+.quote-slider {
+  margin-top: 20px;
+    position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  height: 150px; 
+  margin-bottom: 40px;
+  text-align: center;
+  border: none; /* Remove the border color */
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+
+}
+
+.quote {
+  display: none;
+}
+
+.quote.active {
+  display: block;
+}
+
+blockquote {
+  font-weight: 400; 
+  font-size: 1.2rem; 
+  /* max-width: 500px;  */
+  line-height: 1.4;
+  margin: 0 auto; 
+  padding: 1rem;
+  border-radius: 200px;
+  /* border: 1px solid #ffffff;   */
+  /* border: none; */
+  border-bottom: 2px solid #c3cdd8; 
+  box-shadow: 2px 4px 4px rgb(220, 217, 237);
+  background-color: #fff; 
+  width: 105%; 
+  /* color:#a0b5cd; */
+  color:#6092cc;
+
+  font-size: 2rem;
+}
+
+
+
+
 @media screen and (max-width: 600px) {
   .boards-cont {
     flex-direction: column;
